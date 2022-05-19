@@ -1,0 +1,4 @@
+*.md
+deploy
+dist
+node_modules

@@ -1,0 +1,6 @@
+.odo/env
+.odo/odo-file-index.json
+node_modules
+.DS_Store
+.env
+./dist

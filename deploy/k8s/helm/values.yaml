@@ -1,0 +1,35 @@
+namespace: graphs
+deployment:
+  name: eventsgraph-v1
+  replicas: 1
+  annotations:
+    - key: "app.kubernetes.io/managed-by"
+      value: "Helm"
+    - key: "meta.helm.sh/release-name"
+      value: "eventsgraph-v1"
+    - key: "meta.helm.sh/release-namespace"
+      value: "graphs"
+app:
+  name: eventsgraph
+  version: v1
+  istioAutoInject: true
+  containerImage: image-registry.openshift-image-registry.svc:5000/graphs/eventsgraph:v1
+  labels: []
+  ports:
+    - name: http
+      port: 8080
+  env:
+    - name: POSTGRESCLUSTER_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: hippo-pguser-hippo
+          key: user
+          optional: false
+    - name: POSTGRESCLUSTER_JDBC-URI
+      valueFrom:
+        secretKeyRef:
+          name: hippo-pguser-hippo
+          key: jdbc-uri
+          optional: false
+
+imagePullPolicy: Always
