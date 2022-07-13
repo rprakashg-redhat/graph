@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       annotations:
-        sidecar.istio.io/inject: {{ .Values.app.istioAutoInject | squote }}
+        #sidecar.istio.io/inject: {{ .Values.app.istioAutoInject | squote }}
         {{- range $k, $v := .Values.deployment.annotations }}
         {{ $v.key }}: {{ $v.value | squote }}
         {{- end }}

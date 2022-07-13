@@ -24,10 +24,18 @@ type Query {
   events: [Event]
 }
 
+type Review {
+  id: String!
+  rating: Int!
+  reviewDate: String!
+  reviewedBy: String!
+}
+
 type Session {
   description: String!
   end: String!
   id: String!
+  reviews: [Review!]!
   speakers: [Speaker!]!
   start: String!
   title: String!

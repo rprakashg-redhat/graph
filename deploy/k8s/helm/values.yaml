@@ -19,12 +19,16 @@ app:
     - name: http
       port: 8080
   env:
-    - name: POSTGRESCLUSTER_USERNAME
+    - name: SCHEDULER_URL
+      value: "https://scheduler.apps.sandbox1104.opentlc.com"
+
+    - name: POSTGRESCLUSTER_USER
       valueFrom:
         secretKeyRef:
           name: hippo-pguser-hippo
           key: user
           optional: false
+    
     - name: POSTGRESCLUSTER_JDBC-URI
       valueFrom:
         secretKeyRef:

@@ -1,18 +1,18 @@
 import SchedulerAPI from "./datasources/scheduler-api"
-//import { PrismaClient } from "@prisma/client";
 import { Request } from "express";
+//import { ReviewsDB } from "./datasources/reviews-db";
 
 export interface Context {
     api: SchedulerAPI
-//    prisma: PrismaClient
+    //db: ReviewsDB
 }
-const baseUrl = "http://scheduler-demos.apps.ocpdemo.sandbox1887.opentlc.com"
+const baseUrl = process.env.SCHEDULER_URL;
 const api = new SchedulerAPI(baseUrl)
-//const prisma = new PrismaClient();
+//const db = new ReviewsDB();
 
 export const context = ({ req }: { req: Request }): Context => {
     return {
         api,
-//        prisma,
+//        db
     }
 }

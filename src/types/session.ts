@@ -14,5 +14,11 @@ export const Session = objectType({
                 return context.api.getSpeakersForSession(parent.id);
             },
         });
+        t.nonNull.list.nonNull.field("reviews", {
+            type: "Review",
+            resolve(parent, _, context) {
+                return context.db.getReviewsForSession(parent.id);
+            },
+        });
     }
 });

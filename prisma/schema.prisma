@@ -9,3 +9,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model review {
+  id                  Int       @id @default(autoincrement()) @map("_id")  
+  reviewedBy          String    @map("review_by")
+  reviewDate          DateTime  @map("review_date")
+  rating              Int       @map("rating")
+  sessionId           String    @map("session_id")
+
+  @@map("Reviews")
+}

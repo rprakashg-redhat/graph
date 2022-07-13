@@ -6,25 +6,27 @@ WORKDIR /home/graph
 
 COPY package.json .
 
-COPY src .
+ADD src ./src
+ADD prisma ./prisma
 
 RUN npm install -g yarn typescript -s &>/dev/null
 
 COPY tsconfig.json .
 
-RUN yarn install --production && yarn run build
+RUN pwd && ls 
 
-FROM registry.access.redhat.com/ubi8/nodejs-16
+RUN yarn install && \
+    yarn run generate && \
+    yarn run build
+
+FROM registry.access.redhat.com/ubi8/ubi8/nodejs-16-minimal
 
 USER 0
 
 WORKDIR /home/graph
 
-COPY --from=builder /home/graph/package.json .
 COPY --from=builder /home/graph/dist ./dist
-
-RUN npm install -g yarn -s &>/dev/null
 
 EXPOSE 4000
 
-ENTRYPOINT [ "yarn run prod" ]
+ENTRYPOINT [ "node ./dist/index.js" ]

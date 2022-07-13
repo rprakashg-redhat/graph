@@ -39,6 +39,12 @@ export interface NexusGenObjects {
     type: NexusGenEnums['EventType']; // EventType!
   }
   Query: {};
+  Review: { // root type
+    id: string; // String!
+    rating: number; // Int!
+    reviewDate: string; // String!
+    reviewedBy: string; // String!
+  }
   Session: { // root type
     description: string; // String!
     end: string; // String!
@@ -81,10 +87,17 @@ export interface NexusGenFieldTypes {
   Query: { // field return type
     events: Array<NexusGenRootTypes['Event'] | null> | null; // [Event]
   }
+  Review: { // field return type
+    id: string; // String!
+    rating: number; // Int!
+    reviewDate: string; // String!
+    reviewedBy: string; // String!
+  }
   Session: { // field return type
     description: string; // String!
     end: string; // String!
     id: string; // String!
+    reviews: NexusGenRootTypes['Review'][]; // [Review!]!
     speakers: NexusGenRootTypes['Speaker'][]; // [Speaker!]!
     start: string; // String!
     title: string; // String!
@@ -114,10 +127,17 @@ export interface NexusGenFieldTypeNames {
   Query: { // field return type name
     events: 'Event'
   }
+  Review: { // field return type name
+    id: 'String'
+    rating: 'Int'
+    reviewDate: 'String'
+    reviewedBy: 'String'
+  }
   Session: { // field return type name
     description: 'String'
     end: 'String'
     id: 'String'
+    reviews: 'Review'
     speakers: 'Speaker'
     start: 'String'
     title: 'String'

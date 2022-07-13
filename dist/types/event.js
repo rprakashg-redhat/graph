@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EventsQuery = exports.Event = exports.EventType = void 0;
-const schema_1 = require("@nexus/schema");
-exports.EventType = (0, schema_1.enumType)({
+const nexus_1 = require("nexus");
+exports.EventType = (0, nexus_1.enumType)({
     name: "EventType",
     members: ["Conference", "Webinar", "Workshop"],
     description: "Type of event"
 });
-exports.Event = (0, schema_1.objectType)({
+exports.Event = (0, nexus_1.objectType)({
     name: "Event",
     definition(t) {
         t.nonNull.string("id");
@@ -27,7 +27,7 @@ exports.Event = (0, schema_1.objectType)({
         });
     }
 });
-exports.EventsQuery = (0, schema_1.extendType)({
+exports.EventsQuery = (0, nexus_1.extendType)({
     type: 'Query',
     definition(t) {
         t.list.field("events", {

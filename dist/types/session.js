@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Session = void 0;
-const schema_1 = require("@nexus/schema");
-exports.Session = (0, schema_1.objectType)({
+const nexus_1 = require("nexus");
+exports.Session = (0, nexus_1.objectType)({
     name: "Session",
     definition(t) {
         t.nonNull.string("id");
