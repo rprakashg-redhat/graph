@@ -4,11 +4,11 @@ export class ReviewsDB {
     async getReviewsForSession(id: string) {
         const prisma = new PrismaClient();
         try {
-            return prisma.review.findMany(`{
+            return prisma.review.findMany({
                 where: {
-                    sessionId: ${id}
+                    sessionId: `${id}`
                 }
-            }`);
+            });
         } finally {
             await prisma.$disconnect();
         }

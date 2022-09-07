@@ -6,16 +6,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model review {
-  id                  Int       @id @default(autoincrement()) @map("_id")  
-  reviewedBy          String    @map("review_by")
-  reviewDate          DateTime  @map("review_date")
+  id                  String @id @default(auto()) @map("_id") @db.ObjectId  
+  reviewedBy          String    @map("reviewed_by")
+  reviewDate          String  @map("review_date")
   rating              Int       @map("rating")
   sessionId           String    @map("session_id")
 
-  @@map("Reviews")
+  @@map("reviews")
 }
