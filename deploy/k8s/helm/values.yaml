@@ -22,18 +22,11 @@ app:
     - name: SCHEDULER_URL
       value: "https://scheduler.apps.sandbox1104.opentlc.com"
 
-    - name: POSTGRESCLUSTER_USER
+    - name: DATABASE_URL
       valueFrom:
         secretKeyRef:
-          name: hippo-pguser-hippo
-          key: user
+          name: reviews-db-secret
+          key: CONNECTION_STRING
           optional: false
     
-    - name: POSTGRESCLUSTER_JDBC-URI
-      valueFrom:
-        secretKeyRef:
-          name: hippo-pguser-hippo
-          key: jdbc-uri
-          optional: false
-
 imagePullPolicy: Always
