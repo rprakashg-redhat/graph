@@ -6,7 +6,7 @@ Source code for the REST apis this server queries can be found [here](https://gi
 ## Building the server
 Follow steps below to build this server. Before you can build the server 
 
-1) Deploy the REST Apis. Follow instructions in this [repo](https://github.com/rprakashg-redhat)
+1) Deploy the REST Apis. Follow instructions in this [repo](https://github.com/rprakashg-redhat/scheduler)
 
 2) Create a MongoDB database. For this demo I used the free tier option with Monodb atlas service and stood up a cluster and created a database named graph with a collection called reviews. You also need to create a service account to connect to this database. Be sure to allow connection from any IP. Obviously don't do that for production usecases but for demo/learning its ok to do that.  Once you have created some sample data using the CRUD operations exposed in the REST endpoints you can add some reviews in the mongoDB database using the sample JSON provided in the data folder. Be sure to replace the session id with your own values 
 
@@ -34,7 +34,7 @@ podman build -t graph -f ./.ci/Dockerfile .
 7) Deploy the server to OpenShift using Helm chart. Be sure to replace the ContainerImage value in the Values file with the full path to the container image. 
 
 Be sure to create a secret named 'reviews-db-secret' that contains a key CONNECTION_STRING which will have connection string value to connect to the MongoDB database
- 
+
 ```
 helm upgrade -i graph ./deploy/k8s/helm -f ./deploy/k8s/helm/Values.yaml
 ```
