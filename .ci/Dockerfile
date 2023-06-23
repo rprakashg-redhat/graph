@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-16 as builder
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 
 USER 0
 
